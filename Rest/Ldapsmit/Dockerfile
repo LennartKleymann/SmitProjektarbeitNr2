@@ -7,7 +7,7 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["Ldapsmit.csproj", "Ldapsmit/"]
+COPY ["LdapSmit.csproj", "Ldapsmit/"]
 RUN dotnet restore "Ldapsmit/Ldapsmit.csproj"
 COPY . .
 WORKDIR "/src/Ldapsmit"
