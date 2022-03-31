@@ -21,7 +21,7 @@ app.UseCors(builder => builder
      .AllowAnyMethod()
      .AllowAnyMethod());
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseAuthorization();
 

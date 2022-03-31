@@ -7,16 +7,16 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["Ldapsmit/LdapSmit.csproj", "Ldapsmit/"]
-RUN dotnet restore "Ldapsmit/LdapSmit.csproj"
+COPY ["LdapSmit.csproj", "Ldapsmit/"]
+RUN dotnet restore "Ldapsmit/Ldapsmit.csproj"
 COPY . .
 WORKDIR "/src/Ldapsmit"
-RUN dotnet build "LdapSmit.csproj" -c Release -o /app/build
+RUN dotnet build "Ldapsmit.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "LdapSmit.csproj" -c Release -o /app/publish
+RUN dotnet publish "Ldapsmit.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "LdapSmit.dll"]
+ENTRYPOINT ["dotnet", "Ldapsmit.dll"]
